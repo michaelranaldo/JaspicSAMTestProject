@@ -5,7 +5,20 @@
             30
         </session-timeout>
     </session-config>
-    <welcome-file-list>
-        <welcome-file>JaspicTest</welcome-file>
-    </welcome-file-list>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>JASPICTest</web-resource-name>
+            <url-pattern>/JaspicTest</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>standard</role-name>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+    <security-role>
+        <role-name>standard</role-name>
+    </security-role>
 </web-app>

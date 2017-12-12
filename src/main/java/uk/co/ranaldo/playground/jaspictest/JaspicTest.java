@@ -27,6 +27,7 @@ public class JaspicTest extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String selfURL = request.getRequestURL().toString();
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -34,7 +35,11 @@ public class JaspicTest extends HttpServlet {
             out.println("<title>Servlet JaspicTest</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet JaspicTest at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet JaspicTest at " + selfURL + "</h1>");
+            out.println("View as <a href=" + selfURL + "?user=Keith&group=standard>user Keith, group Standard</a><br>");
+            out.println("View as <a href=" + selfURL + "?user=Keith&group=admin>user Keith, group Admin</a><br>");
+            out.println("View as <a href=" + selfURL + "?user=Keith&group=NaN>user Keith, group unknown</a><br>");
+            out.println("<br><br><br>");
             Principal userPrincipal = request.getUserPrincipal();
             boolean adminUser = request.isUserInRole("admin");
             String userName;
